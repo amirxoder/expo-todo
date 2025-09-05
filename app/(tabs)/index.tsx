@@ -1,47 +1,32 @@
 import useTheme from "@/hooks/useTheme";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
+// convex
+
+import { createHomeStyles } from "@/assets/styles/home.styles";
+import { api } from "@/convex/_generated/api";
+import { useQuery } from "convex/react";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+// Linear gradient
+import { LinearGradient } from "expo-linear-gradient";
+import { Text } from "react-native";
 
 export default function Index() {
-  const { toggleDarkMode, colors } = useTheme();
+  const { colors } = useTheme();
 
-  const toggleThemeMode = () => {
-    toggleDarkMode();
-  };
+  const tasks = useQuery(api.todos.getTodos);
+  console.log(tasks);
+
+  const styles = createHomeStyles(colors);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.content}>Hi there</Text>
-      <Text style={styles.subContent}>first app with expo</Text>
-      <TouchableOpacity onPress={() => toggleThemeMode()}>
-        <Text>Toggle Theme</Text>
-      </TouchableOpacity>
-    </View>
+    <LinearGradient
+      colors={colors.gradients.background}
+      style={styles.container}
+    >
+      <SafeAreaView style={styles.container}>
+        <Text>hi</Text>
+      </SafeAreaView>
+    </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: "100%",
-    width: "100%",
-    // backgroundColor: "#000",
-    display: "flex",
-    alignItems: "center",
-    gap: "122rem",
-    justifyContent: "center",
-    // flexDirection: "row",
-    // rowGap: 2,
-  },
-  content: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#333",
-  },
-
-  subContent: {
-    fontSize: 18,
-    color: "#555",
-    marginTop: 10,
-    fontStyle: "italic",
-    textDecorationLine: "underline",
-  },
-});
