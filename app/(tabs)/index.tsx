@@ -1,10 +1,20 @@
-import { StyleSheet, Text, View } from "react-native";
+import useTheme from "@/hooks/useTheme";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
+  const { toggleDarkMode, colors } = useTheme();
+
+  const toggleThemeMode = () => {
+    toggleDarkMode();
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.content}>Hi there</Text>
       <Text style={styles.subContent}>first app with expo</Text>
+      <TouchableOpacity onPress={() => toggleThemeMode()}>
+        <Text>Toggle Theme</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -16,8 +26,10 @@ const styles = StyleSheet.create({
     // backgroundColor: "#000",
     display: "flex",
     alignItems: "center",
+    gap: "122rem",
     justifyContent: "center",
-    flexDirection: "row",
+    // flexDirection: "row",
+    // rowGap: 2,
   },
   content: {
     fontSize: 24,
