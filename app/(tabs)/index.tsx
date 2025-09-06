@@ -9,6 +9,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 // Linear gradient
 import Header from "@/components/Header";
+import TodoInput from "@/components/TodoInput";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "react-native";
 
@@ -28,6 +29,7 @@ export default function Index() {
       <StatusBar barStyle={colors.statusBarStyle} />
       <SafeAreaView style={styles.container}>
         <Header />
+        <TodoInput />
       </SafeAreaView>
     </LinearGradient>
   );

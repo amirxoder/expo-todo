@@ -85,7 +85,7 @@ export const createHomeStyles = (colors: ColorScheme) => {
     },
     inputWrapper: {
       flexDirection: "row",
-      alignItems: "flex-end",
+      alignItems: "center",
       gap: 16,
     },
     input: {
@@ -100,6 +100,7 @@ export const createHomeStyles = (colors: ColorScheme) => {
       backgroundColor: colors.backgrounds.input,
       borderColor: colors.border,
       color: colors.text,
+      // height: 60,
     },
     inputFocused: {
       borderColor: colors.primary,

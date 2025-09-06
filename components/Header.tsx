@@ -4,7 +4,6 @@ import useTheme from "@/hooks/useTheme";
 import { Ionicons } from "@expo/vector-icons";
 import { useQuery } from "convex/react";
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
 import { Text, View } from "react-native";
 
 const Header = () => {
@@ -14,13 +13,12 @@ const Header = () => {
 
   const todos = useQuery(api.todos.getTodos);
 
-  //   get all todos and filter the completed ones
-  const completedTodos = todos?.filter((todo) => todo.isCompleted).length ?? 0;
-  const totalTodos = todos?.length ?? 0;
-
-  //   calculate the progress percentage
+  const completedCount = todos
+    ? todos.filter((todo) => todo.isCompleted).length
+    : 0;
+  const totalCount = todos ? todos.length : 0;
   const progressPercentage =
-    totalTodos === 0 ? 0 : (completedTodos / totalTodos) * 100;
+    totalCount > 0 ? (completedCount / totalCount) * 100 : 0;
 
   return (
     <View style={homeStyles.header}>
@@ -29,15 +27,17 @@ const Header = () => {
           colors={colors.gradients.primary}
           style={homeStyles.iconContainer}
         >
-          <Ionicons name="flash-outline" size={28} color={"#fff"} />
+          <Ionicons name="flash-outline" size={28} color="#fff" />
         </LinearGradient>
+
         <View style={homeStyles.titleTextContainer}>
           <Text style={homeStyles.title}>Today&apos;s Tasks 👀</Text>
           <Text style={homeStyles.subtitle}>
-            {completedTodos} of {totalTodos} tasks completed
+            {completedCount} of {totalCount} completed
           </Text>
         </View>
       </View>
+
       <View style={homeStyles.progressContainer}>
         <View style={homeStyles.progressBarContainer}>
           <View style={homeStyles.progressBar}>
@@ -48,10 +48,10 @@ const Header = () => {
                 { width: `${progressPercentage}%` },
               ]}
             />
-            <Text style={homeStyles.progressText}>
-              {Math.round(progressPercentage)}%
-            </Text>
           </View>
+          <Text style={homeStyles.progressText}>
+            {Math.round(progressPercentage)}%
+          </Text>
         </View>
       </View>
     </View>
