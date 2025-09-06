@@ -8,8 +8,9 @@ import { useQuery } from "convex/react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 // Linear gradient
+import Header from "@/components/Header";
 import { LinearGradient } from "expo-linear-gradient";
-import { Text } from "react-native";
+import { StatusBar } from "react-native";
 
 export default function Index() {
   const { colors } = useTheme();
@@ -24,8 +25,9 @@ export default function Index() {
       colors={colors.gradients.background}
       style={styles.container}
     >
+      <StatusBar barStyle={colors.statusBarStyle} />
       <SafeAreaView style={styles.container}>
-        <Text>hi</Text>
+        <Header />
       </SafeAreaView>
     </LinearGradient>
   );
