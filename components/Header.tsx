@@ -45,7 +45,12 @@ const Header = () => {
               colors={colors.gradients.success}
               style={[
                 homeStyles.progressFill,
-                { width: `${progressPercentage}%` },
+                {
+                  width: `${progressPercentage}%`,
+                  transitionDuration: "300ms",
+                  transitionProperty: "width",
+                  transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+                },
               ]}
             />
           </View>
